@@ -184,11 +184,15 @@ const NavList = styled.li`
     min-width: 80px;
     position: relative;
     text-decoration: none;
+    margin: 0px 6px;
 
     span {
       color: rgba(0, 0, 0, 0.6);
       display: flex;
       align-items: center;
+    }
+    img {
+      height: 24px;
     }
     @media (max-width: 768px) {
       min-width: 70px;
