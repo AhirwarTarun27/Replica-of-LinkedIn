@@ -147,6 +147,15 @@ const Google = styled.button`
   height: 56px;
   border-radius: 28px;
   width: 100%;
+  vertical-align: middle;
+  z-index: 0;
+  transition-duration: 167ms;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  &:hover {
+    background-color: rgba(207, 207, 207, 0.25);
+    color: rgba(0, 0, 0, 0.75);
+  }
 `;
 
 export default Login;
