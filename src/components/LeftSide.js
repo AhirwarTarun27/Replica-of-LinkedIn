@@ -177,12 +177,13 @@ const CommunityCard = styled(ArtCard)`
   display: flex;
   flex-direction: column;
   a {
-    color: black;
+    color: #0a66c2;
     padding: 4px 12px 4px 12px;
     font-size: 12px;
 
     &:hover {
-      color: #0a66c2;
+      text-decoration: underline;
+      cursor: pointer;
     }
 
     span {
