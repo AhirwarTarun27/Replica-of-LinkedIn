@@ -22,6 +22,31 @@ const Header = (props) => {
             <NavList>
               <a>
                 <img src="/images/nav-home.svg" alt="" />
+                <span>Home</span>
+              </a>
+            </NavList>
+            <NavList>
+              <a>
+                <img src="/images/nav-network.svg" alt="" />
+                <span>My Network</span>
+              </a>
+            </NavList>
+            <NavList>
+              <a>
+                <img src="/images/nav-jobs.svg" alt="" />
+                <span>Jobs</span>
+              </a>
+            </NavList>
+            <NavList>
+              <a>
+                <img src="/images/nav-messaging.svg" alt="" />
+                <span>Messaging</span>
+              </a>
+            </NavList>
+            <NavList>
+              <a>
+                <img src="/images/nav-notifications.svg" alt="" />
+                <span>Notifications</span>
               </a>
             </NavList>
           </NavListWrap>
@@ -129,6 +154,20 @@ const NavList = styled.li`
 
     span {
       color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      min-width: 70px;
+    }
+  }
+
+  &:hover,
+  &:active {
+    a {
+      span {
+        color: rgba(0, 0, 0, 0.9);
+      }
     }
   }
 `;
