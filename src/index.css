@@ -38,5 +38,7 @@ ul {
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", "Helvetica Neue", "Fira Sans", "Oxygen Sans",
+    "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
 }
