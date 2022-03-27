@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ReactPlayer from "react-player";
+import { connect } from "react-redux";
 import styled from "styled-components";
 
 const PostModal = (props) => {
@@ -45,8 +46,13 @@ const PostModal = (props) => {
             </Header>
             <SharedContent>
               <UserInfo>
-                <img src="/images/user.svg" alt="" />
-                <span>Name</span>
+                {props.user.photoURL ? (
+                  <img src={props.user.photoURL} />
+                ) : (
+                  <img src="/images/user.svg" alt="" />
+                )}
+
+                <span>{props.user.displayName}</span>
               </UserInfo>
 
               <Editor>
@@ -266,4 +272,12 @@ const UploadImageComponent = styled.div`
   }
 `;
 
-export default PostModal;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostModal);
