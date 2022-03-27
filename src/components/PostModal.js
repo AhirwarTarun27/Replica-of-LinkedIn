@@ -1,8 +1,21 @@
 import { useState } from "react";
+import ReactPlayer from "react-player";
 import styled from "styled-components";
 
 const PostModal = (props) => {
   const [editorText, setEditorText] = useState("");
+  const [shareImage, setShareImage] = useState("");
+  const [videoLink, setVideoLink] = useState("");
+
+  const handleChange = (e) => {
+    const image = e.target.files[0];
+
+    if (image === "" || image === undefined) {
+      alert(`not an image, the file is a ${typeof image}`);
+      return;
+    }
+    setShareImage(image);
+  };
 
   const reset = (e) => {
     setEditorText("");
@@ -32,7 +45,32 @@ const PostModal = (props) => {
                   onChange={(e) => setEditorText(e.target.value)}
                   placeholder="What do you want to talk about?"
                   autoFocus={true}
-                ></textarea>
+                />
+                <UploadImageComponent>
+                  <input
+                    type="file"
+                    accept="image/gif, image/jpeg, image/png"
+                    name="image"
+                    id="file"
+                    style={{ display: "none" }}
+                    onChange={handleChange}
+                  />
+                  <p>
+                    <label htmlFor="file">Select an Image to share</label>
+                  </p>
+                  {shareImage && <img src={URL.createObjectURL(shareImage)} />}
+                  <>
+                    <input
+                      type="text"
+                      placeholder="Please input a video link"
+                      value={videoLink}
+                      onChange={(e) => setVideoLink(e.target.value)}
+                    />
+                    {videoLink && (
+                      <ReactPlayer width={"100%"} url={videoLink} />
+                    )}
+                  </>
+                </UploadImageComponent>
               </Editor>
             </SharedContent>
             <ShareCreation>
@@ -201,6 +239,13 @@ const Editor = styled.div`
     min-height: 100px;
     resize: none;
     font-size: 16px;
+  }
+`;
+
+const UploadImageComponent = styled.div`
+  text-align: center;
+  img {
+    width: 100%;
   }
 `;
 
