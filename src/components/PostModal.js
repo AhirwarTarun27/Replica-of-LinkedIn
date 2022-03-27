@@ -3,51 +3,63 @@ import styled from "styled-components";
 
 const PostModal = (props) => {
   const [editorText, setEditorText] = useState("");
+
+  const reset = (e) => {
+    setEditorText("");
+    props.handleClick(e);
+  };
+
   return (
-    <Container>
-      <Content>
-        <Header>
-          <h2>Create a post</h2>
-          <button>
-            <img src="/images/close-icon.svg" alt="" />
-          </button>
-        </Header>
-        <SharedContent>
-          <UserInfo>
-            <img src="/images/user.svg" alt="" />
-            <span>Name</span>
-          </UserInfo>
+    <>
+      {props.showModal === "open" && (
+        <Container>
+          <Content>
+            <Header>
+              <h2>Create a post</h2>
+              <button onClick={(event) => reset(event)}>
+                <img src="/images/close-icon.svg" alt="" />
+              </button>
+            </Header>
+            <SharedContent>
+              <UserInfo>
+                <img src="/images/user.svg" alt="" />
+                <span>Name</span>
+              </UserInfo>
 
-          <Editor>
-            <textarea
-              value={editorText}
-              onChange={(e) => setEditorText(e.target.value)}
-              placeholder="What do you want to talk about?"
-              autoFocus={true}
-            ></textarea>
-          </Editor>
-        </SharedContent>
-        <ShareCreation>
-          <AttachAssets>
-            <AssetButton>
-              <img src="/images/photo-icon.svg" alt="" />
-            </AssetButton>
-            <AssetButton>
-              <img src="/images/video-icon.svg" alt="" />
-            </AssetButton>
-          </AttachAssets>
+              <Editor>
+                <textarea
+                  value={editorText}
+                  onChange={(e) => setEditorText(e.target.value)}
+                  placeholder="What do you want to talk about?"
+                  autoFocus={true}
+                ></textarea>
+              </Editor>
+            </SharedContent>
+            <ShareCreation>
+              <AttachAssets>
+                <AssetButton>
+                  <img src="/images/photo-icon.svg" alt="" />
+                </AssetButton>
+                <AssetButton>
+                  <img src="/images/video-icon.svg" alt="" />
+                </AssetButton>
+              </AttachAssets>
 
-          <ShareComment>
-            <AssetButton>
-              <img src="/images/comment-icon.svg" alt="" />
-              Anyone
-            </AssetButton>
-          </ShareComment>
+              <ShareComment>
+                <AssetButton>
+                  <img src="/images/comment-icon.svg" alt="" />
+                  Anyone
+                </AssetButton>
+              </ShareComment>
 
-          <PostButton>Post</PostButton>
-        </ShareCreation>
-      </Content>
-    </Container>
+              <PostButton disabled={!editorText ? true : false}>
+                Post
+              </PostButton>
+            </ShareCreation>
+          </Content>
+        </Container>
+      )}
+    </>
   );
 };
 
@@ -60,6 +72,7 @@ const Container = styled.div`
   z-index: 9999;
   color: black;
   background-color: rgba(0, 0, 0, 0.8);
+  animation: fadeIn 0.3s;
 `;
 
 const Content = styled.div`
@@ -98,7 +111,8 @@ const Header = styled.div`
       background-color: rgba(0, 0, 0, 0.15);
       transition-duration: 350ms;
     }
-    svg {
+    svg,
+    img {
       pointer-events: none;
     }
   }
@@ -172,10 +186,11 @@ const PostButton = styled.button`
   min-width: 60px;
   border-radius: 20px;
   padding-left: 5px;
-  background: #0a66c2;
+  background: ${(props) => (props.disabled ? "rgba(0,0,0,0.3)" : "#0a66c2")};
   color: white;
   &:hover {
-    background: #004182;
+    background: ${(props) => (props.disabled ? "rgba(0,0,0,0.3)" : "#004182")};
+    cursor: ${(props) => (props.disabled ? "not-allowed" : "context-menu")};
   }
 `;
 

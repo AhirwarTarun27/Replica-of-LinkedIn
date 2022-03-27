@@ -20,7 +20,7 @@ const Header = (props) => {
           </SearchIcon>
         </Search>
         <Nav>
-          <NavListWrap>
+          <NavListWrap className="scrollHide">
             <NavList className="bottomLine">
               <a>
                 <img src="/images/nav-home.svg" alt="" />
@@ -161,6 +161,8 @@ const NavListWrap = styled.ul`
   display: flex;
   flex-wrap: nowrap;
   list-style-type: none;
+  overflow: scroll;
+
   .bottomLine {
     span:after {
       content: "";
@@ -228,6 +230,12 @@ const SignOut = styled.div`
   transition-duration: 170ms;
   text-align: center;
   display: none;
+  /* @media (max-width: 768px) {
+    bottom: 45px;
+    margin-bottom: 40px;
+    background: black;
+    height: 200px;
+  } */
 `;
 
 const User = styled(NavList)`
