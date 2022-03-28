@@ -72,57 +72,62 @@ const Main = (props) => {
           <Content>
             {props.loading && <img src="/images/loading.svg" />}
 
-            <Article>
-              <SharedActor>
-                <a>
-                  <img src="/images/user.svg" alt="" />
-                  <div>
-                    <span>Title</span>
-                    <span>Info</span>
-                    <span>Date</span>
-                  </div>
-                </a>
-                <button>
-                  <img src="images/ellipsis.svg" alt="" />
-                </button>
-              </SharedActor>
-              <Description>Description</Description>
-              <SharedImg>
-                <a>
-                  <img src="/images/shared-image.jpg" alt="" />
-                </a>
-              </SharedImg>
-              <SocialCounts>
-                <li>
-                  <button>
-                    <img src="/images/likes.svg" alt="" />
-                    <img src="/images/clap.svg" alt="" />
-                    <span>286</span>
-                  </button>
-                </li>
-                <li>
-                  <a>2 comments</a>
-                </li>
-              </SocialCounts>
-              <SocialActions>
-                <button>
-                  <img src="/images/like.svg" alt="" />
-                  <span>Like</span>
-                </button>
-                <button>
-                  <img src="/images/comment-icon.svg" alt="" />
-                  <span>Comments</span>
-                </button>
-                <button>
-                  <img src="/images/share-icon.svg" alt="" />
-                  <span>Share</span>
-                </button>
-                <button>
-                  <img src="/images/send-icon.svg" alt="" />
-                  <span>Send</span>
-                </button>
-              </SocialActions>
-            </Article>
+            {props.articles.length > 0 &&
+              props.articles.map((article, key) => (
+                <Article key={key}>
+                  <SharedActor>
+                    <a>
+                      <img src={article.actor.image} alt="" />
+                      <div>
+                        <span>{article.actor.title}</span>
+                        <span>{article.actor.discription}</span>
+                        <span>
+                          {article.actor.date.toDate().toLocaleDateString()}
+                        </span>
+                      </div>
+                    </a>
+                    <button>
+                      <img src="images/ellipsis.svg" alt="" />
+                    </button>
+                  </SharedActor>
+                  <Description>Description</Description>
+                  <SharedImg>
+                    <a>
+                      <img src="/images/shared-image.jpg" alt="" />
+                    </a>
+                  </SharedImg>
+                  <SocialCounts>
+                    <li>
+                      <button>
+                        <img src="/images/likes.svg" alt="" />
+                        <img src="/images/clap.svg" alt="" />
+                        <span>286</span>
+                      </button>
+                    </li>
+                    <li>
+                      <a>2 comments</a>
+                    </li>
+                  </SocialCounts>
+                  <SocialActions>
+                    <button>
+                      <img src="/images/like.svg" alt="" />
+                      <span>Like</span>
+                    </button>
+                    <button>
+                      <img src="/images/comment-icon.svg" alt="" />
+                      <span>Comments</span>
+                    </button>
+                    <button>
+                      <img src="/images/share-icon.svg" alt="" />
+                      <span>Share</span>
+                    </button>
+                    <button>
+                      <img src="/images/send-icon.svg" alt="" />
+                      <span>Send</span>
+                    </button>
+                  </SocialActions>
+                </Article>
+              ))}
           </Content>
           <PostModal showModal={showModal} handleClick={handleClick} />
         </Container>
@@ -241,8 +246,9 @@ const SharedActor = styled.div`
           color: rgba(0, 0, 0, 1);
         }
 
-        &:nth-child(n + 1) {
-          font-size: 12px;
+        &:nth-child(n + 2) {
+          font-size: 13px;
+          font-weight: 700;
           color: rgba(0, 0, 0, 0.6);
         }
       }
