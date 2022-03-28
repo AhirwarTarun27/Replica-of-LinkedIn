@@ -1,9 +1,14 @@
 import db, { auth, provider, storage } from "../firebase";
-import { SET_USER } from "./actionTypes";
+import { SET_LOADING, SET_USER } from "./actionTypes";
 
 export const setUser = (payload) => ({
   type: SET_USER,
   user: payload,
+});
+
+export const setLoading = (status) => ({
+  type: SET_LOADING,
+  status,
 });
 
 export function signInAPI() {
@@ -43,6 +48,8 @@ export function signOutAPI() {
 
 export function postArticleAPI(payload) {
   return (dispatch) => {
+    dispatch(setLoading(true));
+
     if (payload.image != "") {
       const upload = storage
         .ref(`images/${payload.image.name}`)
@@ -75,6 +82,7 @@ export function postArticleAPI(payload) {
               description: payload.description,
             })
             .catch((error) => error.message);
+          dispatch(setLoading(false));
         }
       );
     } else if (payload.video) {
@@ -92,6 +100,7 @@ export function postArticleAPI(payload) {
           description: payload.description,
         })
         .catch((error) => error.message);
+      dispatch(setLoading(false));
     }
   };
 }
