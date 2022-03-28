@@ -14,7 +14,9 @@ In this project I added various features like Google Authentication for signIn, 
 <tr>
 <td>
 Tech Stack used: 
+  
 ### Front End Library
+  
 - React
 - Styled-components
 - Redux Thunk
@@ -51,6 +53,7 @@ Tech Stack used:
 ---
 
 - **Mobile View**
+
 ![Screenshot (179)](https://user-images.githubusercontent.com/91532627/160452540-bee2d824-8c09-4845-93e4-c1bc8b2ac516.png)
 ![Screenshot (178)](https://user-images.githubusercontent.com/91532627/160452548-05dde5bd-33f9-4f41-b180-d977c814e7f2.png)
 
