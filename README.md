@@ -24,7 +24,7 @@ Tech Stack used:
 
 ### Back End
 - Firebase Auth
-- Firebase data 
+- Firebase data base
 - Node JS
 
 </td>
